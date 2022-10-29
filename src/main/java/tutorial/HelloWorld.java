@@ -6,6 +6,8 @@ public class HelloWorld {
         for (int i = 1; i <= 100; i++) {
             System.out.println(convert(i));
         }
+
+
     }
 
     public static String convert(int decide) {
