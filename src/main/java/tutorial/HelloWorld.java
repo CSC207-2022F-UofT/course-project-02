@@ -20,4 +20,8 @@ public class HelloWorld {
         }
         return String.valueOf(decide);
     }
+
+    public String success(){
+        return "success";
+    }
 }
