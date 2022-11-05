@@ -109,14 +109,14 @@ public class Map extends JFrame {
                             if(isempty == 1){
                                 //不能选择自己（这里要改一下点自己的反馈)
                                 if(icell==i){
-                                    JOptionPane.showMessageDialog(null,"选择其他cell");
+                                    JOptionPane.showMessageDialog(null,"Choose other cells");
                                 }
                                 //判断是否不是附近的（不是距离为1的点）（这里要改一下点其他cell的反馈）
                                 else if((Math.abs(Constant.getCell(icell).getLocationx()
                                         -Constant.getCell(i).getLocationx())+
                                         Math.abs(Constant.getCell(icell).getLocationy()
                                                 -Constant.getCell(i).getLocationy())!=150)){
-                                    JOptionPane.showMessageDialog(null,"选择其他cell");
+                                    JOptionPane.showMessageDialog(null,"Choose other cells");
                                 }
                                 //这里要判断是否为友军，然后进攻
                                 else if(Constant.getCell(i).getArm()!=null){
@@ -133,7 +133,7 @@ public class Map extends JFrame {
                                     }
                                     //是友军不能进攻
                                     if (!isEnermy){
-                                        JOptionPane.showMessageDialog(null,"不能进攻友军");
+                                        JOptionPane.showMessageDialog(null,"Friendly fire is not allowed");
                                     }
                                     //不是直接进攻（这里最好要有一个展示进攻的过程，死亡暂时还没做完）(这里还差挺多的）
                                     else {
@@ -144,14 +144,14 @@ public class Map extends JFrame {
                                             Constant.getAllplayers()[Constant.getPnum()-1].changeMove(1);
                                             //当前军队move-1
                                             Constant.getCell(icell).getArm().changeMovement(1);
-                                            JOptionPane.showMessageDialog(null,"进攻");
+                                            JOptionPane.showMessageDialog(null,"Attack");
                                             new fight(Constant.getCell(i).getArm(),Constant.getCell(icell).getArm());
                                         }
                                         else if(Constant.getAllplayers()[Constant.getPnum()-1].getMove() <= 0){
-                                            JOptionPane.showMessageDialog(null,"当前玩家可用步数不够");
+                                            JOptionPane.showMessageDialog(null,"The available move of the current player are not enough");
                                         }
                                         else if(Constant.getCell(icell).getArm().getMovement() <= 0) {
-                                            JOptionPane.showMessageDialog(null,"当前军队可用步数不够");
+                                            JOptionPane.showMessageDialog(null,"The available move of the current army are not enough");
                                         }
 
                                     }
@@ -172,10 +172,10 @@ public class Map extends JFrame {
                                         break;
                                     }
                                     else if(Constant.getAllplayers()[Constant.getPnum()-1].getMove() <= 0){
-                                        JOptionPane.showMessageDialog(null,"当前玩家可用步数不够");
+                                        JOptionPane.showMessageDialog(null,"The available move of the current player are not enough");
                                     }
                                     else if(Constant.getCell(icell).getArm().getMovement() <= 0) {
-                                        JOptionPane.showMessageDialog(null,"当前军队可用步数不够");
+                                        JOptionPane.showMessageDialog(null,"The available move of the current army are not enough");
                                     }
                                 }
                             }
@@ -186,7 +186,7 @@ public class Map extends JFrame {
                                     icell=i;
                                 }
                                 else {
-                                    JOptionPane.showMessageDialog(null,"这里是敌人的部队哦");
+                                    JOptionPane.showMessageDialog(null,"Uh Oh! This is enemy army!");
                                 }
                             }
                             else {
@@ -204,7 +204,7 @@ public class Map extends JFrame {
                                             "produce", JOptionPane.PLAIN_MESSAGE, new ImageIcon(""), arm, 4);
                                 }
                                 else {
-                                    JOptionPane.showMessageDialog(null,"这里没有你的东西哦");
+                                    JOptionPane.showMessageDialog(null,"There's nothing for you here...");
                                 }
                                 //双方对应生成选中的兵种
                                 Armnew a = null;
@@ -235,7 +235,7 @@ public class Map extends JFrame {
                                         }
                                         //没钱不能买兵（这里要加个什么效果来展示）
                                         else {
-                                            JOptionPane.showMessageDialog(null,"没钱还想买兵？");
+                                            JOptionPane.showMessageDialog(null,"NO MONEY,NO ARMY!");
                                         }
                                     }
                                 }
@@ -265,7 +265,7 @@ public class Map extends JFrame {
                                             s = null;
                                         }
                                         else {
-                                            JOptionPane.showMessageDialog(null,"没钱还想买兵？");
+                                            JOptionPane.showMessageDialog(null,"NO MONEY,NO ARMY!");
                                         }
                                     }
                                 }
@@ -308,7 +308,7 @@ public class Map extends JFrame {
         gImage.setFont(new Font(Constant.getTitle(),Font.PLAIN,50));
         //保存的计数器（用于保存数据现有两行可以加但是比较繁琐后面可以进行修改）
         txt=getTxt(1);
-        gImage.drawString("总共点击了"+txt+"次",100,200);
+        gImage.drawString("Totol click"+txt+"times",100,200);
         //双方国家
         gImage.drawString("Player1: "+Constant.getPlayer1().getNation().getNation(),100,70);
         gImage.drawString("Player2: "+Constant.getPlayer2().getNation().getNation(),1000,70);
@@ -319,16 +319,16 @@ public class Map extends JFrame {
         gImage.drawLine(1350,700,1350,1000);
         gImage.drawLine(1350,700,1800,700);
         if(swicth){
-            gImage.drawString("确认",1350,750);
+            gImage.drawString("Confirm",1350,750);
         }
         else {
-            gImage.drawString("回合结束",1350,750);
+            gImage.drawString("End of round",1350,750);
         }
         //测试用
-        gImage.drawString("Player"+Constant.getPnum()+"的回合",700,70);
+        gImage.drawString("Player"+Constant.getPnum()+"round",700,70);
         gImage.drawString("Player1 cost: " + Constant.getPlayer1().getCost(),700,120);
         gImage.drawString("Player2 cost: " + Constant.getPlayer2().getCost(),700,170);
-        gImage.drawString("当前玩家剩余可用move： "+Constant.getAllplayers()[Constant.getPnum()-1].getMove(),700,220);
+        gImage.drawString("Surplus avaliable move for current player： "+Constant.getAllplayers()[Constant.getPnum()-1].getMove(),700,220);
 
         //画一个箭头表示可移动到的位置（有更好的可以替换，现在箭头位置好像有bug但不影响）
         gImage.setColor(Color.yellow);
