@@ -25,6 +25,14 @@ public class LoginFrame {
     public static final Object lock1 = new Object();
 
     /**
+<<<<<<< HEAD
+     * 锁对象 2
+     */
+    public static final Object lock2 = new Object();
+
+    /**
+=======
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
      * 主体框架
      */
     private JFrame frame;
@@ -130,16 +138,27 @@ public class LoginFrame {
                     frame.setVisible(false);
                     Thread t1 = new Thread(() -> {
                         synchronized (lock) {
+<<<<<<< HEAD
+                            new SelectCountryFrame("player 1", lock1, Constant.getPlayer1());
+=======
                             new SelectCountryFrame("player 1", lock);
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                         }
                     });
                     t1.start();
                     // 启动第二个线程 第二个玩家进行等待
                     Thread t2 = new Thread(() -> {
+<<<<<<< HEAD
+                        synchronized (lock1) {
+                            try {
+                                lock1.wait();
+                                new SelectCountryFrame("player 2", lock2, Constant.getPlayer2());
+=======
                         synchronized (lock) {
                             try {
                                 lock.wait();
                                 new SelectCountryFrame("player 2", lock1);
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -148,6 +167,21 @@ public class LoginFrame {
                     t2.start();
                     // 玩家选择国家后继续
                     Thread t3 = new Thread(() -> {
+<<<<<<< HEAD
+                        synchronized (lock2) {
+                            /*while(true) {
+                                if (Login.PLAY_COUNTRY_MAP.size() > 1) break;
+//                                System.out.println(1);
+                            }*/
+                            try {
+                                lock2.wait();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Constant.addallcells();
+                            Constant.setCanProduce();
+                            new Map().map();
+=======
                         synchronized (lock1) {
                             try {
                                 lock1.wait();
@@ -155,6 +189,7 @@ public class LoginFrame {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                         }
                     });
                     t3.start();

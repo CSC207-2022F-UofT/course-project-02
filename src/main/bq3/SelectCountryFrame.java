@@ -1,5 +1,13 @@
 package bq3;
 
+<<<<<<< HEAD
+import bq3.nation.Germany;
+import bq3.nation.Japan;
+import bq3.nation.UK;
+import bq3.nation.US;
+
+=======
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -65,9 +73,21 @@ public class SelectCountryFrame extends JFrame {
      */
     private Object lock;
 
+<<<<<<< HEAD
+    /**
+     * 玩家对象
+     */
+    private Player player;
+    
+    public SelectCountryFrame(String name, Object lock, Player player1) {
+        this.name = name;
+        this.lock = lock;
+        this.player = player1;
+=======
     public SelectCountryFrame(String name, Object lock) {
         this.name = name;
         this.lock = lock;
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
         this.setTitle("Select Country" + name);
         this.setBounds(460, 300, 680, 700);
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -135,6 +155,10 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Germany");
+<<<<<<< HEAD
+                player.setNation(new Germany());
+=======
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                 frame.setVisible(false);
                 synchronized (lock) {
                     lock.notify();
@@ -170,9 +194,16 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "United Kindom");
+<<<<<<< HEAD
+                player.setNation(new UK());
+                frame.setVisible(false);
+                synchronized (lock) {
+                    lock.notify();
+=======
                 frame.setVisible(false);
                 synchronized (LoginFrame.lock) {
                     LoginFrame.lock.notify();
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                 }
             }
 
@@ -204,9 +235,16 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "United States");
+<<<<<<< HEAD
+                player.setNation(new US());
+                frame.setVisible(false);
+                synchronized (lock) {
+                    lock.notify();
+=======
                 frame.setVisible(false);
                 synchronized (LoginFrame.lock) {
                     LoginFrame.lock.notify();
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                 }
             }
 
@@ -238,9 +276,16 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Imperial Japan");
+<<<<<<< HEAD
+                player.setNation(new Japan());
+                frame.setVisible(false);
+                synchronized (lock) {
+                    lock.notify();
+=======
                 frame.setVisible(false);
                 synchronized (LoginFrame.lock) {
                     LoginFrame.lock.notify();
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                 }
             }
 
@@ -272,9 +317,16 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Soviet Union");
+<<<<<<< HEAD
+                player.setNation(new Germany());
+                frame.setVisible(false);
+                synchronized (lock) {
+                    lock.notify();
+=======
                 frame.setVisible(false);
                 synchronized (LoginFrame.lock) {
                     LoginFrame.lock.notify();
+>>>>>>> 088a527 (登录UI/选择国家UI 交互整合 完成)
                 }
             }
 
