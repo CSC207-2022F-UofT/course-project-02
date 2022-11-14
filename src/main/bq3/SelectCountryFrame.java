@@ -74,7 +74,7 @@ public class SelectCountryFrame extends JFrame {
      * 玩家对象
      */
     private Player player;
-    
+
     public SelectCountryFrame(String name, Object lock, Player player1) {
         this.name = name;
         this.lock = lock;
