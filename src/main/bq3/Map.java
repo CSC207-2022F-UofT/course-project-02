@@ -26,7 +26,7 @@ public class Map extends JFrame {
 
 
     public void map(){
-
+        System.out.println(1);
         //加入当前地图
         Constant.setMap(this);
         //屏幕上分的标题栏不显示(加上后有小概率打不开游戏）
@@ -39,6 +39,7 @@ public class Map extends JFrame {
         this.setLocationRelativeTo(null);
         //不能改变屏幕大小
         this.setResizable(false);
+        System.out.println(2);
         //关闭窗口使上级窗口可以重新开始游戏
         this.addWindowListener(new WindowAdapter(){
             public void windowClosing(WindowEvent e){
@@ -90,7 +91,7 @@ public class Map extends JFrame {
                                 }
                                 //改天气(最好不要全改？）
                                 for (int i = 0; i < Constant.cellnum; i++) {
-                                    Constant.getCell(i).setWeather(Constant.getWeatherList()[random.nextInt(0,2)]);
+                                    Constant.getCell(i).setWeather(Constant.getWeatherList()[random.nextInt(2)]);
                                 }
                             }
                             swicth=false;
@@ -333,7 +334,7 @@ public class Map extends JFrame {
         //画一个箭头表示可移动到的位置（有更好的可以替换，现在箭头位置好像有bug但不影响）
         gImage.setColor(Color.yellow);
         if(isempty==1){
-            jtmove++;
+            jtmove = 10;
             for (int i = 0; i < Constant.getPointnum(); i++) {
                 if (Constant.getCell(icell).getLocationx()-Constant.getCell(i).getLocationx()==150&
                         Constant.getCell(icell).getLocationy()-Constant.getCell(i).getLocationy()==0) {
@@ -510,34 +511,32 @@ public class Map extends JFrame {
             }
 
             //map上添加关于天气的图片或文字(但是太小的话看不太清所以暂时不做放在这）
-
-//            if(Constant.getCell(i).isWt()){
-//                if(Constant.getCell(i).getWeather().getId()==0){
-//                    gImage.drawString("sunny",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
-//                }
-//                if(Constant.getCell(i).getWeather().getId()==1){
-//                    gImage.drawString("rain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
-//                }
-//                if(Constant.getCell(i).getWeather().getId()==2){
-//                    gImage.drawString("snow",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
-//                }
-//                if(Constant.getCell(i).getTerrain()==0){
-//                    gImage.drawString("plain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-//                }
-//                if(Constant.getCell(i).getTerrain()==1){
-//                    gImage.drawString("mountain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-//                }
-//                if(Constant.getCell(i).getTerrain()==2){
-//                    gImage.drawString("river",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-//                }
-//                if(Constant.getCell(i).getTerrain()==3){
-//                    gImage.drawString("swamp",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-//                }
-//                if(Constant.getCell(i).getTerrain()==4){
-//                    gImage.drawString("desert",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-//                }
-//            }
-
+            gImage.setFont(new Font(null, 0, 10));
+            gImage.setColor(Color.WHITE);
+            if(Constant.getCell(i).getWeather().getId()==0){
+                gImage.drawString("sunny",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
+            }
+            if(Constant.getCell(i).getWeather().getId()==1){
+                gImage.drawString("rain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
+            }
+            if(Constant.getCell(i).getWeather().getId()==2){
+                gImage.drawString("snow",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
+            }
+            if(Constant.getCell(i).getTerrain()==0){
+                gImage.drawString("plain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
+            }
+            if(Constant.getCell(i).getTerrain()==1){
+                gImage.drawString("mountain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
+            }
+            if(Constant.getCell(i).getTerrain()==2){
+                gImage.drawString("river",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
+            }
+            if(Constant.getCell(i).getTerrain()==3){
+                gImage.drawString("swamp",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
+            }
+            if(Constant.getCell(i).getTerrain()==4){
+                gImage.drawString("desert",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
+            }
         }
         //把所有东西加在原有画布上，双缓存的一部分
         g.drawImage(offscreenimage,0,0,null);

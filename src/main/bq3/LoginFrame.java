@@ -25,6 +25,11 @@ public class LoginFrame {
     public static final Object lock1 = new Object();
 
     /**
+     * 锁对象 2
+     */
+    public static final Object lock2 = new Object();
+
+    /**
      * 主体框架
      */
     private JFrame frame;
@@ -130,16 +135,16 @@ public class LoginFrame {
                     frame.setVisible(false);
                     Thread t1 = new Thread(() -> {
                         synchronized (lock) {
-                            new SelectCountryFrame("player 1", lock);
+                            new SelectCountryFrame("player 1", lock1, Constant.getPlayer1());
                         }
                     });
                     t1.start();
                     // 启动第二个线程 第二个玩家进行等待
                     Thread t2 = new Thread(() -> {
-                        synchronized (lock) {
+                        synchronized (lock1) {
                             try {
-                                lock.wait();
-                                new SelectCountryFrame("player 2", lock1);
+                                lock1.wait();
+                                new SelectCountryFrame("player 2", lock2, Constant.getPlayer2());
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -148,13 +153,19 @@ public class LoginFrame {
                     t2.start();
                     // 玩家选择国家后继续
                     Thread t3 = new Thread(() -> {
-                        synchronized (lock1) {
+                        synchronized (lock2) {
+                            /*while(true) {
+                                if (Login.PLAY_COUNTRY_MAP.size() > 1) break;
+//                                System.out.println(1);
+                            }*/
                             try {
-                                lock1.wait();
-                                System.exit(0);
+                                lock2.wait();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
+                            Constant.addallcells();
+                            Constant.setCanProduce();
+                            new Map().map();
                         }
                     });
                     t3.start();

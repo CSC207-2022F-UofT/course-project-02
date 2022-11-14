@@ -30,9 +30,9 @@ public class Cell {
         this.locationx = locationx;
         this.locationy = locationy;
         if(Constant.getWeatherList()!=null){
-            this.weather = Constant.getWeatherList()[random.nextInt(0,3)];
+            this.weather = Constant.getWeatherList()[random.nextInt(3)];
         }
-        this.terrain = random.nextInt(0,5);
+        this.terrain = random.nextInt(5);
     }
 
 

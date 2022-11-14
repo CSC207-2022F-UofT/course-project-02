@@ -1,5 +1,10 @@
 package bq3;
 
+import bq3.nation.Germany;
+import bq3.nation.Japan;
+import bq3.nation.UK;
+import bq3.nation.US;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
@@ -65,9 +70,15 @@ public class SelectCountryFrame extends JFrame {
      */
     private Object lock;
 
-    public SelectCountryFrame(String name, Object lock) {
+    /**
+     * 玩家对象
+     */
+    private Player player;
+    
+    public SelectCountryFrame(String name, Object lock, Player player1) {
         this.name = name;
         this.lock = lock;
+        this.player = player1;
         this.setTitle("Select Country" + name);
         this.setBounds(460, 300, 680, 700);
         this.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -135,6 +146,7 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Germany");
+                player.setNation(new Germany());
                 frame.setVisible(false);
                 synchronized (lock) {
                     lock.notify();
@@ -170,9 +182,10 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "United Kindom");
+                player.setNation(new UK());
                 frame.setVisible(false);
-                synchronized (LoginFrame.lock) {
-                    LoginFrame.lock.notify();
+                synchronized (lock) {
+                    lock.notify();
                 }
             }
 
@@ -204,9 +217,10 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "United States");
+                player.setNation(new US());
                 frame.setVisible(false);
-                synchronized (LoginFrame.lock) {
-                    LoginFrame.lock.notify();
+                synchronized (lock) {
+                    lock.notify();
                 }
             }
 
@@ -238,9 +252,10 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Imperial Japan");
+                player.setNation(new Japan());
                 frame.setVisible(false);
-                synchronized (LoginFrame.lock) {
-                    LoginFrame.lock.notify();
+                synchronized (lock) {
+                    lock.notify();
                 }
             }
 
@@ -272,9 +287,10 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Soviet Union");
+                player.setNation(new Germany());
                 frame.setVisible(false);
-                synchronized (LoginFrame.lock) {
-                    LoginFrame.lock.notify();
+                synchronized (lock) {
+                    lock.notify();
                 }
             }
 
