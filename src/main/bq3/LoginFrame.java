@@ -15,6 +15,16 @@ import java.util.HashMap;
 public class LoginFrame {
 
     /**
+     * 锁对象 1
+     */
+    public static final Object lock = new Object();
+
+    /**
+     * 锁对象 2
+     */
+    public static final Object lock1 = new Object();
+
+    /**
      * 主体框架
      */
     private JFrame frame;
@@ -57,7 +67,7 @@ public class LoginFrame {
 
     public void setFrame() {
         frame = new JFrame("兵棋");
-        frame.setBounds(460, 300, 400, 165);
+        frame.setBounds(460, 300, 380, 160);
         frame.setLayout(new FlowLayout(FlowLayout.CENTER));
         frame.setLocationRelativeTo(null);
 
@@ -77,6 +87,7 @@ public class LoginFrame {
 
         frame.setVisible(true);
         frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.getContentPane().add(new SelectCountryFrame());
     }
 
     /**
@@ -103,12 +114,10 @@ public class LoginFrame {
                     fieldOfError.setEditable(false);
                     fieldOfError.setBorder(new LineBorder(Color.WHITE, 0));
                     fieldOfError.setHorizontalAlignment(JTextField.CENTER);
-
                     mistakeCase.add(fieldOfError);
                     frame.setVisible(false);
                     mistakeCase.setVisible(true);
                     mistakeCase.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-
                     // 添加 dialog 关闭事件
                     mistakeCase.addWindowListener(new WindowAdapter() {
                         @Override
@@ -119,14 +128,50 @@ public class LoginFrame {
                     });
                 } else {
                     frame.setVisible(false);
+                    Thread t1 = new Thread(() -> {
+                        synchronized (lock) {
+                            new SelectCountryFrame("player 1", lock);
+                        }
+                    });
+                    t1.start();
+                    // 启动第二个线程 第二个玩家进行等待
+                    Thread t2 = new Thread(() -> {
+                        synchronized (lock) {
+                            try {
+                                lock.wait();
+                                new SelectCountryFrame("player 2", lock1);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    t2.start();
+                    // 玩家选择国家后继续
+                    Thread t3 = new Thread(() -> {
+                        synchronized (lock1) {
+                            try {
+                                lock1.wait();
+                                System.exit(0);
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                    t3.start();
                 }
             }
         });
     }
 
+    /**
+     * 判断是否登录
+     * @param account 用户名
+     * @param password 密码
+     * @return true/false
+     */
     public boolean isLogin(String account, String password) {
         String pwd = accountMap.get(account);
-        return pwd != null && !password.equals(pwd);
+        return !password.equals(pwd);
     }
 
     public static void main(String[] args) {
