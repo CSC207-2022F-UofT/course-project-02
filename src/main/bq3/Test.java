@@ -11,7 +11,7 @@ public class Test {
         Random random = new Random();
         int a = 0;
         for (int i = 0; i < 100; i++) {
-            a+=random.nextInt(0,3);
+            a+=random.nextInt(3);
         }
         System.out.println(a/3);
     }

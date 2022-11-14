@@ -1,16 +1,12 @@
 package bq3;
 
 import bq3.Background.BackgroundEntry;
-import bq3.nation.Germany;
-import bq3.nation.Japan;
-import bq3.nation.UK;
-import bq3.nation.US;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.util.Objects;
+import java.util.HashMap;
 
 
 public class Login extends JFrame {
@@ -19,6 +15,10 @@ public class Login extends JFrame {
     private Image offscreenimage=null;
     private final BackgroundEntry bg = new BackgroundEntry();
 
+    /**
+     * 用来存储玩家选择的国家
+     */
+    public static HashMap<String, String> PLAY_COUNTRY_MAP = new HashMap<String, String>();
 
     public void login(){
         this.setUndecorated(true);
@@ -36,58 +36,7 @@ public class Login extends JFrame {
                         e.getY()>=220&
                         e.getY()<=270){
                     if(Constant.getByx()==0){
-                        String[] nation ={ "Germany", "United Kindom", "United States","Imperial Japan" };
-                        String s1 = (String) JOptionPane.showInputDialog(null,"choose nation:\n",
-                                "Player1", JOptionPane.PLAIN_MESSAGE, null, nation, 4);
-                        if(Objects.equals(s1, "Germany")){
-                            Constant.getPlayer1().setNation(new Germany());
-                        }
-                        if(Objects.equals(s1, "United Kindom")){
-                            Constant.getPlayer1().setNation(new UK());
-                        }
-                        if(Objects.equals(s1, "United States")){
-                            Constant.getPlayer1().setNation(new US());
-                        }
-                        if(Objects.equals(s1, "Imperial Japan")){
-                            Constant.getPlayer1().setNation(new Japan());
-                        }
-                        boolean fail = true;
-                        for (int i = 0; i < 4; i++) {
-                            if(Objects.equals(s1, nation[i])){
-                                nation[i] = nation[i]+" is selected by Player1";
-                                String s2 = (String) JOptionPane.showInputDialog(null,"choose nation:\n",
-                                        "Player2", JOptionPane.PLAIN_MESSAGE, null, nation, 4);
-
-
-                                if(Objects.equals(s2, "Germany")){
-                                    Constant.getPlayer2().setNation(new Germany());
-                                }
-                                if(Objects.equals(s2, "United Kindom")){
-                                    Constant.getPlayer2().setNation(new UK());
-                                }
-                                if(Objects.equals(s2, "United States")){
-                                    Constant.getPlayer2().setNation(new US());
-                                }
-                                if(Objects.equals(s2, "Imperial Japan")){
-                                    Constant.getPlayer2().setNation(new Japan());
-                                }
-
-                                for (int j = 0; j < 4; j++) {
-                                    if(Objects.equals(s2, nation[j])&j!=i){
-                                        fail = false;
-                                        Constant.setByx(1);
-                                        //把cell全加在地图上，可以做多个地图，所有cell在constant里面改
-                                        Constant.addallcells();
-                                        //生成初始可以生成兵种的位置
-                                        Constant.setCanProduce();
-                                        new Map().map();
-                                    }
-                                }
-                            }
-                        }
-                        if(fail){
-                            JOptionPane.showMessageDialog(null, "Please reselect!", "!!",JOptionPane.PLAIN_MESSAGE);
-                        }
+                        new LoginFrame();
                     }
                     else {
                         JOptionPane.showMessageDialog(null,"不能重复打开");
@@ -135,11 +84,7 @@ public class Login extends JFrame {
 
             }
         });
-
-
-
         new Login.PaintThead().start();
-
     }
 
     @Override
