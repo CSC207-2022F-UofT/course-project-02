@@ -522,19 +522,19 @@ public class Map extends JFrame {
             if(Constant.getCell(i).getWeather().getId()==2){
                 gImage.drawString("snow",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
             }
-            if(Constant.getCell(i).getTerrain()==0){
+            if(Constant.getCell(i).getTerrain().equals("Plain")){
                 gImage.drawString("plain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
             }
-            if(Constant.getCell(i).getTerrain()==1){
+            if(Constant.getCell(i).getTerrain().equals("Mountain")){
                 gImage.drawString("mountain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
             }
-            if(Constant.getCell(i).getTerrain()==2){
+            if(Constant.getCell(i).getTerrain().equals("River")){
                 gImage.drawString("river",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
             }
-            if(Constant.getCell(i).getTerrain()==3){
+            if(Constant.getCell(i).getTerrain().equals("Swamp")){
                 gImage.drawString("swamp",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
             }
-            if(Constant.getCell(i).getTerrain()==4){
+            if(Constant.getCell(i).getTerrain().equals("Desert")){
                 gImage.drawString("desert",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
             }
         }

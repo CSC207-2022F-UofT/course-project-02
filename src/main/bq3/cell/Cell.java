@@ -4,9 +4,20 @@ import bq3.Constant;
 import bq3.Weather.Weather;
 import bq3.Armnew;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Cell {
+    private static List<String> terrainList = new ArrayList<>();
+    static {
+        terrainList.add("Plain");
+        terrainList.add("Mountain");
+        terrainList.add("River");
+        terrainList.add("Swamp");
+        terrainList.add("Desert");
+        terrainList.add("");
+    }
     private static int numcells=0;
     private int id;
     private int locationx;
@@ -17,7 +28,7 @@ public class Cell {
     private final Random random =new Random();
 
     private Weather weather;
-    private final int terrain;
+    private final String terrain;
 
     private Armnew arm = null;
     private boolean p1CanProduce=false;
@@ -32,7 +43,7 @@ public class Cell {
         if(Constant.getWeatherList()!=null){
             this.weather = Constant.getWeatherList()[random.nextInt(3)];
         }
-        this.terrain = random.nextInt(5);
+        this.terrain = terrainList.get(random.nextInt(6));
     }
 
 
@@ -64,7 +75,7 @@ public class Cell {
     public void setSp(boolean sp) {
         this.sp = sp;
     }
-    public int getTerrain() {
+    public String getTerrain() {
         return terrain;
     }
 
