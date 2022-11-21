@@ -23,6 +23,14 @@ public class Map extends JFrame {
     private String s;
     private boolean swicth=false;
     private Random random = new Random();
+    /**
+     * 锁对象 1
+     */
+    public static final Object lock = new Object();
+    /**
+     * 锁对象 2
+     */
+    public static final Object lock1 = new Object();
 
 
     public void map(){
@@ -197,6 +205,13 @@ public class Map extends JFrame {
                                     Object[] arm ={ "Infantry", "Armored Vechicle", "Tank","Tiger Tank"};
                                     s = (String) JOptionPane.showInputDialog(null,"choose arm:\n",
                                             "produce", JOptionPane.PLAIN_MESSAGE, new ImageIcon(""), arm, 4);
+                                    Thread t1 = new Thread(() -> {
+                                        synchronized (lock) {
+                                            new SelectCountryFrame("player 1", lock1, Constant.getPlayer1());
+                                        }
+                                    });
+                                    t1.start();
+                                    new SelectArmyFrame("player 2",lock, Constant.getPlayer2());
                                 }
                                 else if(Constant.getCell(i).isP2CanProduce()&Constant.getPnum()==2){
                                     //每个国家的选框还没做好统一用这4个

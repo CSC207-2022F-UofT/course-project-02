@@ -135,7 +135,8 @@ public class LoginFrame {
                     frame.setVisible(false);
                     Thread t1 = new Thread(() -> {
                         synchronized (lock) {
-                            new SelectCountryFrame("player 1", lock1, Constant.getPlayer1());
+                          //  new SelectCountryFrame("player 1", lock1, Constant.getPlayer1());
+                            new SelectArmyFrame("player 1", lock1, Constant.getPlayer1());
                         }
                     });
                     t1.start();
