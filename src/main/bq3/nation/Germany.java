@@ -6,9 +6,10 @@ public class Germany extends Nation{
         super("Germany");
     }
 
-    @Override
-    public void Special_Unit() {
 
+    @Override
+    public Object[] getArms() {
+        return new Object[]{"Infantry", "Armored Vechicle", "Tank", "Tiger Tank"};
     }
 
     @Override
