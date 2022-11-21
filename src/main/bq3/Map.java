@@ -4,6 +4,7 @@ import bq3.Background.BackgroundMap;
 import bq3.Weather.Weather;
 import bq3.Arm.*;
 import bq3.cell.Celldetail;
+import bq3.nation.Nation;
 
 import javax.swing.*;
 import java.awt.*;
@@ -194,13 +195,13 @@ public class Map extends JFrame {
 
                                 if(Constant.getCell(i).isP1CanProduce()&Constant.getPnum()==1){
                                     //每个国家的选框还没做好统一用这4个
-                                    Object[] arm ={ "Infantry", "Armored Vechicle", "Tank","Tiger Tank"};
+                                    Object[] arm = Constant.getPlayer1().getNation().getArms();
                                     s = (String) JOptionPane.showInputDialog(null,"choose arm:\n",
                                             "produce", JOptionPane.PLAIN_MESSAGE, new ImageIcon(""), arm, 4);
                                 }
                                 else if(Constant.getCell(i).isP2CanProduce()&Constant.getPnum()==2){
                                     //每个国家的选框还没做好统一用这4个
-                                    Object[] arm ={ "Infantry", "Armored Vechicle", "Tank","Tiger Tank"};
+                                    Object[] arm = Constant.getPlayer2().getNation().getArms();
                                     s = (String) JOptionPane.showInputDialog(null,"choose arm:\n",
                                             "produce", JOptionPane.PLAIN_MESSAGE, new ImageIcon(""), arm, 4);
                                 }
@@ -224,6 +225,14 @@ public class Map extends JFrame {
                                     }
                                     if(Objects.equals(s, "Tiger Tank")){
                                         a = new TigerTank4p1(Constant.getMap(),Constant.getCell(i).getLocationx(),
+                                                Constant.getCell(i).getLocationy());
+                                    }
+                                    if(Objects.equals(s, "Type 95 Light Tank")){
+                                        a = new Type95LightTank4p1(Constant.getMap(),Constant.getCell(i).getLocationx(),
+                                                Constant.getCell(i).getLocationy());
+                                    }
+                                    if(Objects.equals(s, "Conscript")){
+                                        a = new Conscript4p1(Constant.getMap(),Constant.getCell(i).getLocationx(),
                                                 Constant.getCell(i).getLocationy());
                                     }
                                     //成功加入兵种后扣cost，把该兵种加入对应的player和cell中
@@ -256,6 +265,14 @@ public class Map extends JFrame {
                                     }
                                     if(Objects.equals(s, "Tiger Tank")){
                                         a = new TigerTank4p2(Constant.getMap(),Constant.getCell(i).getLocationx(),
+                                                Constant.getCell(i).getLocationy());
+                                    }
+                                    if(Objects.equals(s, "Type 95 Light Tank")){
+                                        a = new Type95LightTank4p2(Constant.getMap(),Constant.getCell(i).getLocationx(),
+                                                Constant.getCell(i).getLocationy());
+                                    }
+                                    if(Objects.equals(s, "Conscript")){
+                                        a = new Conscript4p2(Constant.getMap(),Constant.getCell(i).getLocationx(),
                                                 Constant.getCell(i).getLocationy());
                                     }
                                     if(a!=null){

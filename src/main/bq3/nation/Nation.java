@@ -15,6 +15,8 @@ public abstract class Nation {
         this.nation = nation;
     }
 
-    public abstract void Special_Unit();
+    public abstract Object[] getArms();
     public abstract void National_Spirit();
+
+
 }

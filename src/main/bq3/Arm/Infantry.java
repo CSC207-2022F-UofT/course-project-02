@@ -11,4 +11,6 @@ public class Infantry extends Armnew {
     public String toString() {
         return "Infantry";
     }
+
+
 }

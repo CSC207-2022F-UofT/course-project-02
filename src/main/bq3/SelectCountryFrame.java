@@ -1,9 +1,6 @@
 package bq3;
 
-import bq3.nation.Germany;
-import bq3.nation.Japan;
-import bq3.nation.UK;
-import bq3.nation.US;
+import bq3.nation.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -168,9 +165,9 @@ public class SelectCountryFrame extends JFrame {
             public void mouseEntered(MouseEvent mouseEvent) {
                 textField.setText("Germany \n" +
                         "  National Spirit\n" +
-                        "   -Lightning war, tank + movement points\n" +
+                        "   -Lightning war: tank + movement points\n" +
                         "  Special Unit\n" +
-                        "   -Tiger Tank + attack + defense");
+                        "   -Tiger Tank: + attack + defense");
             }
 
             @Override
@@ -203,9 +200,9 @@ public class SelectCountryFrame extends JFrame {
             public void mouseEntered(MouseEvent mouseEvent) {
                 textField.setText("United Kindom\n" +
                         "  National Spirit\n" +
-                        "   -We shall never surrender - army defense ++\n" +
+                        "   -We shall never surrender: army defense ++\n" +
                         "  Special Unit:\n" +
-                        "   -Spit Fire fighters + attack");
+                        "   -Spit Fire fighters: + attack");
             }
 
             @Override
@@ -240,7 +237,7 @@ public class SelectCountryFrame extends JFrame {
                         "                         National Spirit\n" +
                         "   -World’s Factory: +productivity\n" +
                         "  Special Units:\n" +
-                        "   -B52 bombers +attack");
+                        "   -B52 bombers: +attack");
             }
 
             @Override
@@ -273,9 +270,9 @@ public class SelectCountryFrame extends JFrame {
             public void mouseEntered(MouseEvent mouseEvent) {
                 textField.setText("Imperial Japan\n" +
                         "National Spirit\n" +
-                        "   -Bushido Army attack / 2 when blood < 50%\n" +
+                        "   -Bushido: Army attack * 2 when blood < 50%\n" +
                         "  Special Unit\n" +
-                        "   -Type 95 Light tank ++ movement - defense");
+                        "   -Type 95 Light tank: ++ movement - defense");
             }
 
             @Override
@@ -287,7 +284,7 @@ public class SelectCountryFrame extends JFrame {
             @Override
             public void mouseClicked(MouseEvent mouseEvent) {
                 Login.PLAY_COUNTRY_MAP.put(name, "Soviet Union");
-                player.setNation(new Germany());
+                player.setNation(new SovietUnion());
                 frame.setVisible(false);
                 synchronized (lock) {
                     lock.notify();
@@ -309,7 +306,9 @@ public class SelectCountryFrame extends JFrame {
                 textField.setText("Soviet Union\n" +
                         "  National Spirit:\n" +
                         "   -Winter Fighters: Snowy location attack+ defense+\n" +
-                        "        P(snow) + in captured region");
+                        "        P(snow) + in captured region\n" +
+                        "  Special Unit\n" +
+                        "   -Conscript(Special infantry): - cost");
             }
 
             @Override

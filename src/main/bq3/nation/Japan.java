@@ -6,8 +6,8 @@ public class Japan extends Nation{
     }
 
     @Override
-    public void Special_Unit() {
-
+    public Object[] getArms() {
+        return new Object[]{"Infantry", "Armored Vechicle", "Tank", "Type 95 Light Tank"};
     }
 
     @Override
