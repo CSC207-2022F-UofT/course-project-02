@@ -103,35 +103,35 @@ public class SelectCountryFrame extends JFrame {
         panel1 = new Panel();
 
         label = new JLabel();
-        ImageIcon img = new ImageIcon("img/1.png");
-        img.setImage(img.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-        label.setBounds(166, 98, 103, 51);
+        ImageIcon img = new ImageIcon("img/Nazi Germany.png");
+        img.setImage(img.getImage().getScaledInstance(210, 120, Image.SCALE_DEFAULT));
+        label.setBounds(166, 98, 310, 100);
         label.setIcon(img);
 
         label1 = new JLabel();
-        ImageIcon img1 = new ImageIcon("img/2.png");
-        img1.setImage(img1.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-        label1.setBounds(166, 98, 103, 51);
+        ImageIcon img1 = new ImageIcon("img/UK.png");
+        img1.setImage(img1.getImage().getScaledInstance(210, 120, Image.SCALE_DEFAULT));
+        label1.setBounds(166, 98, 310, 100);
         label1.setIcon(img1);
 
         label2 = new JLabel();
-        ImageIcon img2 = new ImageIcon("img/3.jpg");
-        img2.setImage(img2.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-        label2.setBounds(166, 98, 103, 51);
+        ImageIcon img2 = new ImageIcon("img/US.png");
+        img2.setImage(img2.getImage().getScaledInstance(210, 120, Image.SCALE_DEFAULT));
+        label2.setBounds(166, 98, 310, 100);
         label2.setIcon(img2);
 
         panel2 = new Panel();
 
         label3 = new JLabel();
-        ImageIcon img3 = new ImageIcon("img/4.png");
-        img3.setImage(img3.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-        label3.setBounds(166, 98, 103, 51);
+        ImageIcon img3 = new ImageIcon("img/Imperial Japan.png");
+        img3.setImage(img3.getImage().getScaledInstance(210, 120, Image.SCALE_DEFAULT));
+        label3.setBounds(166, 98, 310, 100);
         label3.setIcon(img3);
 
         label4 = new JLabel();
-        ImageIcon img4 = new ImageIcon("img/5.png");
-        img4.setImage(img4.getImage().getScaledInstance(200, 200, Image.SCALE_DEFAULT));
-        label4.setBounds(166, 98, 103, 51);
+        ImageIcon img4 = new ImageIcon("img/Soviet Union.png");
+        img4.setImage(img4.getImage().getScaledInstance(210, 120, Image.SCALE_DEFAULT));
+        label4.setBounds(166, 98, 310, 100);
         label4.setIcon(img4);
 
         panel1.add(label);
