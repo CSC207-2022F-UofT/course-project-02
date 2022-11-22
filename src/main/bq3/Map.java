@@ -323,7 +323,7 @@ public class Map extends JFrame {
             gImage.drawString("Yes",1350,750);
         }
         else {
-            gImage.drawString("End your round",1350,750);
+            gImage.drawString("End Turn",1350,750);
         }
         //测试用
         gImage.drawString("Player"+Constant.getPnum()+"'s round",700,70);
