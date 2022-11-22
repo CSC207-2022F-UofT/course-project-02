@@ -39,7 +39,7 @@ public class Login extends JFrame {
                         new LoginFrame();
                     }
                     else {
-                        JOptionPane.showMessageDialog(null,"不能重复打开");
+                        JOptionPane.showMessageDialog(null,"Cannot open repeatedly");
                     }
                 }
                 //设置（还没写）
@@ -52,7 +52,7 @@ public class Login extends JFrame {
                         new Map().map();
                     }
                     else {
-                        JOptionPane.showMessageDialog(null,"不能重复打开");
+                        JOptionPane.showMessageDialog(null,"Cannot open repeatedly");
                     }
                 }
                 //退出游戏
@@ -97,15 +97,15 @@ public class Login extends JFrame {
         bg.paintSelf(gImage);
         gImage.setColor(Color.YELLOW);
         gImage.setFont(new Font(Constant.getTitle(),Font.BOLD,50));
-        gImage.drawString("兵棋",0,120);
+        gImage.drawString("No Man's Land",0,120);
         if(Constant.getByx()==0){
-            gImage.drawString("开始游戏",0,270);
+            gImage.drawString("Start",0,270);
         }
         else {
-            gImage.drawString("游戏进行中",0,270);
+            gImage.drawString("gaming",0,270);
         }
-        gImage.drawString("设置",0,420);
-        gImage.drawString("退出",0,520);
+        gImage.drawString("Settings",0,420);
+        gImage.drawString("Exit",0,520);
         g.drawImage(offscreenimage,0,0,null);
     }
 

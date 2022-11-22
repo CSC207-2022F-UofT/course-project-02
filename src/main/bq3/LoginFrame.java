@@ -76,13 +76,13 @@ public class LoginFrame {
         frame.setLayout(new FlowLayout(FlowLayout.CENTER));
         frame.setLocationRelativeTo(null);
 
-        loginAccount = new JLabel("账户");
+        loginAccount = new JLabel("Account");
         textField = new JTextField("", 30);
 
-        loginPwd = new JLabel("密码");
+        loginPwd = new JLabel("Password");
         passwordField = new JPasswordField("", 30);
 
-        loginButton = new JButton("登录");
+        loginButton = new JButton("Login");
 
         frame.add(loginAccount);
         frame.add(textField);
@@ -104,14 +104,14 @@ public class LoginFrame {
             public void actionPerformed(ActionEvent actionEvent) {
                 String msg = "";
                 if (textField.getText() == null || textField.getText().length() == 0) {
-                    msg = "账号不能为空";
+                    msg = "The Account should not be empty";
                 } else if (passwordField.getPassword().length == 0) {
-                    msg = "密码不能为空";
+                    msg = "The password should not be empty";
                 } else if (isLogin(textField.getText(), String.valueOf(passwordField.getPassword()))) {
-                    msg = "账户与密码未匹配";
+                    msg = "account and password does not match";
                 }
                 if (!msg.equals("")) {
-                    JDialog mistakeCase = new JDialog(frame, "提示");
+                    JDialog mistakeCase = new JDialog(frame, "Hint");
                     mistakeCase.setBounds(400, 500, 200, 100);
                     mistakeCase.setLocationRelativeTo(null);
 
