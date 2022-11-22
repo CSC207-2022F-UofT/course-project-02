@@ -39,7 +39,7 @@ public class Login extends JFrame {
                         new LoginFrame();
                     }
                     else {
-                        JOptionPane.showMessageDialog(null,"不能重复打开");
+                        JOptionPane.showMessageDialog(null,"Cannot open repeatedly");
                     }
                 }
                 //设置（还没写）
@@ -52,7 +52,7 @@ public class Login extends JFrame {
                         new Map().map();
                     }
                     else {
-                        JOptionPane.showMessageDialog(null,"不能重复打开");
+                        JOptionPane.showMessageDialog(null,"Cannot open repeatedly");
                     }
                 }
                 //退出游戏
