@@ -10,6 +10,6 @@ public class Sunny extends Weather{
 
     @Override
     public void effectOnMovement(Armnew arm) {
-        arm.changeMovement(1);
+        arm.changeMovement(-1);
     }
 }
