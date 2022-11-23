@@ -29,7 +29,6 @@ public class Cell {
 
 
     public Cell(int locationx, int locationy) {
-        Terrain terrain1 = null;
         numcells++;
         id=numcells;
         this.locationx = locationx;
@@ -37,28 +36,7 @@ public class Cell {
         if(Constant.getWeatherList()!=null){
             this.weather = Constant.getWeatherList()[random.nextInt(3)];
         }
-        if (locationx >= 100 && locationx < 550 && locationy >= 250 && locationy < 750) {
-            terrain1 = new Plain("Plain", "Plain");
-            if (locationx == 100 && locationy == 550) {
-                terrain1 = new Swamp("Swamp", "Swamp");
-            }
-        } else if (locationx >= 550 && locationx < 1000 && locationy >= 100 && locationy <= 850) {
-            terrain1 = new Mountain("Mountain", "Mountain");
-            if (locationx == 550 && locationy == 400) {
-                terrain1 = new Plain("Plain", "Plain");
-            }
-            if (locationx == 850 && locationy == 700) {
-                terrain1 = new Plain("Plain", "Plain");
-            }
-        } else if (locationx >= 1000 && locationx <= 1150 && locationy >= 100 && locationy < 850) {
-            terrain1 = new Plain("Plain", "Plain");
-            if (locationx == 1000 && locationy == 100) {
-                terrain1 = new River("River", "River");
-            }
-        } else {
-            terrain1 = new Desert("Desert", "Desert");
-        }
-        this.terrain = terrain1;
+        this.terrain = generateWeather(locationx, locationy);
     }
 
 
@@ -124,5 +102,37 @@ public class Cell {
 
     public void setP2CanProduce(boolean p2CanProduce) {
         this.p2CanProduce = p2CanProduce;
+    }
+
+    /**
+     * Generate fixed terrain
+     * @param locationx X coordinate
+     * @param locationy Y coordinate
+     * @return terrain
+     */
+    public Terrain generateWeather(int locationx, int locationy) {
+        Terrain terrain;
+        if (locationx >= 100 && locationx < 550 && locationy >= 250 && locationy < 750) {
+            terrain = new Plain("Plain", "Plain");
+            if (locationx == 100 && locationy == 550) {
+                terrain = new Swamp("Swamp", "Swamp");
+            }
+        } else if (locationx >= 550 && locationx < 1000 && locationy >= 100 && locationy <= 850) {
+            terrain = new Mountain("Mountain", "Mountain");
+            if (locationx == 550 && locationy == 400) {
+                terrain = new Plain("Plain", "Plain");
+            }
+            if (locationx == 850 && locationy == 700) {
+                terrain = new Plain("Plain", "Plain");
+            }
+        } else if (locationx >= 1000 && locationx <= 1150 && locationy >= 100 && locationy < 850) {
+            terrain = new Plain("Plain", "Plain");
+            if (locationx == 1000 && locationy == 100) {
+                terrain = new River("River", "River");
+            }
+        } else {
+            terrain = new Desert("Desert", "Desert");
+        }
+        return terrain;
     }
 }
