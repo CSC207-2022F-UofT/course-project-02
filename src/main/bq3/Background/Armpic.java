@@ -1,6 +1,6 @@
 package bq3.Background;
 
-import bq3.Constant;
+import bq3.Entity.Constant;
 
 import java.awt.*;
 

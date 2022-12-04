@@ -1,11 +1,11 @@
 package bq3.listener;
 
-import bq3.Arm.*;
-import bq3.Armnew;
-import bq3.Constant;
-import bq3.Map;
-import bq3.cell.Celldetail;
-import bq3.fight;
+import bq3.Entity.Armnew;
+import bq3.Entity.Constant;
+import bq3.Entity.Arm.*;
+import bq3.Presenter.Map;
+import bq3.Entity.cell.Celldetail;
+import bq3.Usecase.fight;
 
 import javax.swing.*;
 import java.awt.event.MouseAdapter;

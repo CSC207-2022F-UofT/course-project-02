@@ -1,6 +1,6 @@
 package bq3.Background;
 
-import bq3.*;
+import bq3.Entity.Gameobject;
 
 import java.awt.*;
 

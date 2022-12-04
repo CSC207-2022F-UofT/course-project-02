@@ -1,9 +1,9 @@
 package bq3.listener;
 
-import bq3.Constant;
-import bq3.Login;
-import bq3.LoginFrame;
-import bq3.Map;
+import bq3.Entity.Constant;
+import bq3.Presenter.Login;
+import bq3.Presenter.LoginFrame;
+import bq3.Presenter.Map;
 
 import javax.swing.*;
 import java.awt.event.MouseEvent;

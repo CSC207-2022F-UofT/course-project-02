@@ -1,8 +1,7 @@
 package bq3;
 import javax.swing.*;
-import java.awt.*;
 import java.awt.event.*;
-import bq3.Map;
+import bq3.Presenter.Map;
 
 public class SelectArm implements ActionListener{
     private JFrame window;
