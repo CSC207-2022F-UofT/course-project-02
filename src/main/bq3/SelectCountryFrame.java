@@ -4,6 +4,7 @@ import bq3.nation.Germany;
 import bq3.nation.Japan;
 import bq3.nation.UK;
 import bq3.nation.US;
+import bq3.server.MouseService;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,69 +12,105 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 /**
- * 选择国家兵种
+ * Select country
  */
-public class SelectCountryFrame extends JFrame {
+public class SelectCountryFrame extends JFrame implements MouseService {
 
     /**
-     * SelectCountryFrame 本身
+     * SelectCountryFrame self
      */
     private SelectCountryFrame frame;
 
     /**
-     * 玩家
+     * Player Name
      */
     private String name;
 
+    public String getName() {
+        return name;
+    }
+
     /**
-     * 存放第一行国家
+     * First row country
      */
     private Panel panel1;
 
     /**
-     * 存放第二行国家
+     * Deposit in the second row of countries
      */
     private Panel panel2;
 
     /**
-     * 描述显示
+     * Description display
      */
     private JTextArea textField;
 
+    public JTextArea getTextField() {
+        return textField;
+    }
+
     /**
-     * 国家1
+     * Country 1
      */
     private JLabel label;
 
+    public JLabel getLabel() {
+        return label;
+    }
+
     /**
-     * 国家2
+     * Country 2
      */
     private JLabel label1;
 
+    public JLabel getLabel1() {
+        return label1;
+    }
+
     /**
-     * 国家3
+     * Country 3
      */
     private JLabel label2;
 
+    public JLabel getLabel2() {
+        return label2;
+    }
+
     /**
-     * 国家4
+     * Country 4
      */
     private JLabel label3;
 
+    public JLabel getLabel3() {
+        return label3;
+    }
+
     /**
-     * 国家5
+     * Country 5
      */
     private JLabel label4;
 
+    public JLabel getLabel4() {
+        return label4;
+    }
+
     /**
-     * 锁对象
+     * Lock object
      */
     private Object lock;
 
+    public Object getLock() {
+        return lock;
+    }
+
     /**
-     * 玩家对象
+     * Player object
      */
     private Player player;
+
+    public Player getPlayer() {
+        return player;
+    }
 
     public SelectCountryFrame(String name, Object lock, Player player1) {
         this.name = name;
