@@ -5,6 +5,7 @@ import bq3.Entity.Constant;
 import bq3.Entity.Arm.*;
 import bq3.Presenter.Map;
 import bq3.Entity.cell.Celldetail;
+import bq3.Usecase.EndTerm;
 import bq3.Usecase.fight;
 
 import javax.swing.*;
@@ -54,27 +55,28 @@ public class MapListener {
                             //Reset the move of player
                             //重置军队的可移动次数
                             //Reset the move of army
-                            if(Constant.getPnum()==1){
-                                Constant.setPnum(2);
-                                Constant.getPlayer2().setMove(2);
-                                for (int i = 0; i < Constant.getPlayer1().getArmlist().length; i++) {
-                                    Constant.getPlayer1().getArm(i).setMovement(Constant.getPlayer1().getArm(i).getMovementTotal());
-                                }
-                            }
-                            else if(Constant.getPnum()==2){
-                                Constant.setPnum(1);
-                                Constant.getPlayer1().changeCost(50);
-                                Constant.getPlayer2().changeCost(50);
-                                Constant.getPlayer1().setMove(2);
-                                for (int i = 0; i < Constant.getPlayer2().getArmlist().length; i++) {
-                                    Constant.getPlayer2().getArm(i).setMovement(Constant.getPlayer2().getArm(i).getMovementTotal());
-                                }
-                                //改天气(最好不要全改？）
-                                //Change the weather
-                                for (int i = 0; i < Constant.cellnum; i++) {
-                                    Constant.getCell(i).setWeather(Constant.getWeatherList()[random.nextInt(2)]);
-                                }
-                            }
+                            EndTerm end = new EndTerm(Constant.getPnum());
+//                            if(Constant.getPnum()==1){
+//                                Constant.setPnum(2);
+//                                Constant.getPlayer2().setMove(2);
+//                                for (int i = 0; i < Constant.getPlayer1().getArmlist().length; i++) {
+//                                    Constant.getPlayer1().getArm(i).setMovement(Constant.getPlayer1().getArm(i).getMovementTotal());
+//                                }
+//                            }
+//                            else if(Constant.getPnum()==2){
+//                                Constant.setPnum(1);
+//                                Constant.getPlayer1().changeCost(50);
+//                                Constant.getPlayer2().changeCost(50);
+//                                Constant.getPlayer1().setMove(2);
+//                                for (int i = 0; i < Constant.getPlayer2().getArmlist().length; i++) {
+//                                    Constant.getPlayer2().getArm(i).setMovement(Constant.getPlayer2().getArm(i).getMovementTotal());
+//                                }
+//                                //改天气(最好不要全改？）
+//                                //Change the weather
+//                                for (int i = 0; i < Constant.cellnum; i++) {
+//                                    Constant.getCell(i).setWeather(Constant.getWeatherList()[random.nextInt(2)]);
+//                                }
+//                            }
                             map.swicth=false;
                         }
                     }
