@@ -1,7 +1,7 @@
 package bq3.Background;
 
-import bq3.Gameobject;
-import bq3.Map;
+import bq3.Entity.Gameobject;
+import bq3.Presenter.Map;
 
 import java.awt.*;
 

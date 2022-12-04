@@ -1,9 +1,9 @@
 package bq3.listener;
 
-import bq3.Constant;
-import bq3.LoginFrame;
-import bq3.Map;
-import bq3.SelectCountryFrame;
+import bq3.Entity.Constant;
+import bq3.Presenter.LoginFrame;
+import bq3.Presenter.Map;
+import bq3.Presenter.SelectCountryFrame;
 
 import javax.swing.*;
 import javax.swing.border.LineBorder;
