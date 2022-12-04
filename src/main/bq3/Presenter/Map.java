@@ -2,6 +2,8 @@ package bq3.Presenter;
 
 import bq3.Background.BackgroundMap;
 import bq3.Entity.Constant;
+import bq3.Entity.cell.Cell;
+import bq3.Usecase.GetLoction;
 import bq3.listener.MapListener;
 import bq3.Entity.*;
 
@@ -9,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.util.ArrayList;
 
 public class Map extends JFrame {
     private Image offscreenimage=null;
@@ -85,10 +88,14 @@ public class Map extends JFrame {
         gImage.drawString("Moves available for current player： "+Constant.getAllplayers()[Constant.getPnum()-1].getMove(),700,220);
 
         //画一个箭头表示可移动到的位置（有更好的可以替换，现在箭头位置好像有bug但不影响）
+        ;
         gImage.setColor(Color.yellow);
         if(isempty==1){
             jtmove = 10;
             for (int i = 0; i < Constant.getPointnum(); i++) {
+                GetLoction cell = new GetLoction(icell);
+                int constant_vx = cell.getLocx() - jtmove;
+                int constant_vy = cell.getLocy() - jtmove;
                 if (Constant.getCell(icell).getLocationx()-Constant.getCell(i).getLocationx()==150&
                         Constant.getCell(icell).getLocationy()-Constant.getCell(i).getLocationy()==0) {
                     if (jtmove <= 70 & Constant.getCell(i).getArm() == null) {
@@ -99,10 +106,13 @@ public class Map extends JFrame {
                                 Constant.getCell(icell).getLocationx() - 30 - jtmove,
                                 Constant.getCell(icell).getLocationx() - 30 - jtmove,
                                 Constant.getCell(icell).getLocationx() - jtmove};
-                        int[] b = {Constant.getCell(icell).getLocationy() + 10, Constant.getCell(icell).getLocationy() + 10,
-                                Constant.getCell(icell).getLocationy(), Constant.getCell(icell).getLocationy() + 15,
-                                Constant.getCell(icell).getLocationy() + 30, Constant.getCell(icell).getLocationy() + 20,
-                                Constant.getCell(icell).getLocationy() + 20};
+                        int[] b = {cell.getLocy() + 10,
+                                cell.getLocy() + 10,
+                                cell.getLocy(),
+                                cell.getLocy() + 15,
+                                cell.getLocy() + 30,
+                                cell.getLocy() + 20,
+                                cell.getLocy() + 20};
                         gImage.fillPolygon(a, b, 7);
                     }
                     if (jtmove <= 70 & Constant.getCell(i).getArm() != null) {
@@ -125,6 +135,7 @@ public class Map extends JFrame {
                 if (Constant.getCell(icell).getLocationx()-Constant.getCell(i).getLocationx()==-150&
                         Constant.getCell(icell).getLocationy()-Constant.getCell(i).getLocationy()==0) {
                     if(jtmove<=70& Constant.getCell(i).getArm()==null){
+
                         int[] a = {Constant.getCell(icell).getLocationx() + 30 + jtmove,
                                 Constant.getCell(icell).getLocationx() + 60 + jtmove,
                                 Constant.getCell(icell).getLocationx() + 60 + jtmove,
@@ -192,6 +203,7 @@ public class Map extends JFrame {
                         Constant.getCell(icell).getLocationy()-Constant.getCell(i).getLocationy()==-150){
 
                     if(jtmove<=70&Constant.getCell(i).getArm()==null) {
+
                         int[] a = {Constant.getCell(icell).getLocationy() + 30 + jtmove,
                                 Constant.getCell(icell).getLocationy() + 60 + jtmove,
                                 Constant.getCell(icell).getLocationy() + 60 + jtmove,
@@ -231,32 +243,31 @@ public class Map extends JFrame {
 
 
         for (int i = 0; i < Constant.getPointnum(); i++) {
+            //create a GetLoction Use Case
+            GetLoction cell = new GetLoction(i);
             //设置一下字体格式可能没用到
             gImage.setFont(new Font(Constant.getTitle(),Font.BOLD,50));
             //一个比较透明的颜色
             Color color= new Color(1.0F, 0.75F, 0.0F, 0.45F);
             gImage.setColor(color);
             //画出所有点（specialpoint可以改颜色）
-            gImage.fillOval(Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy(), 30, 30);
+            gImage.fillOval(cell.getLocx(), cell.getLocy(), 30, 30);
             //player1可生产兵的cell为红
             if(Constant.getCell(i).isP1CanProduce()){
                 gImage.setColor(Color.red);
-                gImage.drawOval(Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy(), 30, 30);
-                gImage.setColor(color);
             }
             //player2可生产兵的cell为蓝
             if(Constant.getCell(i).isP2CanProduce()){
                 gImage.setColor(Color.blue);
-                gImage.drawOval(Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy(), 30, 30);
-                gImage.setColor(color);
             }
+            gImage.drawOval(cell.getLocx(), cell.getLocy(), 30, 30);
+            gImage.setColor(color);
             if(Constant.getCell(i).getArm()!=null){
                 //在点上分加入血条（有点难看建议换个表达方式）
                 gImage.setColor(Color.black);
-                gImage.fillRect(Constant.getCell(i).getLocationx()-10,Constant.getCell(i).getLocationy()-15,
-                        50,5);
+                gImage.fillRect(cell.getLocx()-10,cell.getLocy()-15, 50,5);
                 gImage.setColor(Color.red);
-                gImage.fillRect(Constant.getCell(i).getLocationx()-10,Constant.getCell(i).getLocationy()-15,
+                gImage.fillRect(cell.getLocx()-10,cell.getLocy()-15,
                         50*Constant.getCell(i).getArm().getHp()/Constant.getCell(i).getArm().getHpTotal(),5);
                 //在点上加入兵种图片
                 Constant.getCell(i).getArm().paintSelf(gImage);
@@ -266,30 +277,9 @@ public class Map extends JFrame {
             //map上添加关于天气的图片或文字(但是太小的话看不太清所以暂时不做放在这）
             gImage.setFont(new Font(null, 0, 10));
             gImage.setColor(Color.WHITE);
-            if(Constant.getCell(i).getWeather().getId()==0){
-                gImage.drawString("sunny",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
-            }
-            if(Constant.getCell(i).getWeather().getId()==1){
-                gImage.drawString("rain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
-            }
-            if(Constant.getCell(i).getWeather().getId()==2){
-                gImage.drawString("snow",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy());
-            }
-            if(Constant.getCell(i).getTerrain().equals("Plain")){
-                gImage.drawString("plain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-            }
-            if(Constant.getCell(i).getTerrain().equals("Mountain")){
-                gImage.drawString("mountain",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-            }
-            if(Constant.getCell(i).getTerrain().equals("River")){
-                gImage.drawString("river",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-            }
-            if(Constant.getCell(i).getTerrain().equals("Swamp")){
-                gImage.drawString("swamp",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-            }
-            if(Constant.getCell(i).getTerrain().equals("Desert")){
-                gImage.drawString("desert",Constant.getCell(i).getLocationx(), Constant.getCell(i).getLocationy()-10);
-            }
+
+            gImage.drawString(cell.getWeather(),cell.getLocx(), cell.getLocy());
+            gImage.drawString(cell.getTerrain(),cell.getLocx(), cell.getLocy()-10);
         }
         //把所有东西加在原有画布上，双缓存的一部分
         g.drawImage(offscreenimage,0,0,null);
@@ -355,5 +345,18 @@ public class Map extends JFrame {
             throw new RuntimeException(e);
         }
 
+    }
+
+    public int[] helperCreateImage(int location, int[] params, int jtmove, boolean a){
+        int[] return_list = {0,0,0,0,0,0};
+        for(int i = 0; i <= params.length; i++){
+            if(a){
+                return_list[i] = location + params[i] + jtmove;
+            }
+            if(!a){
+                return_list[i] = location - params[i] - jtmove;
+            }
+        }
+        return return_list;
     }
 }
