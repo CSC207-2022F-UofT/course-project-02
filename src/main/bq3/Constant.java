@@ -50,7 +50,7 @@ public class Constant {
 
 
 
-    static int cellnum=0;
+    public static int cellnum=0;
 
     static Player player1=new Player();
     static Player player2=new Player();
