@@ -15,6 +15,7 @@ public class Cell {
     private int locationx;
     private int locationy;
     //特殊点
+    //Special point
     private boolean sp = false;
 
     private final Random random =new Random();

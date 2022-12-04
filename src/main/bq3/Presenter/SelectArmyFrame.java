@@ -42,6 +42,7 @@ public class SelectArmyFrame extends JFrame{
 
     /**
      * 描述显示
+     * Describtion
      */
     private JTextArea textField;
 

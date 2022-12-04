@@ -24,20 +24,25 @@ public class MapListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //左键生成兵种以及在已经有兵的cell移动兵种（进攻模块还没做）
+                //Create army by clicking and move army mouselistener
                 if(e.getButton()==1){
                     //这几行是测试保存数据功能后面用csv代替
+                    //The following two line are created for the purpose of saving data
                     map.txt=map.getTxt(1);
                     map.txt2=map.getTxt(2);
                     map.setTxt(String.valueOf(map.txt+1)+"\n"+String.valueOf(map.txt2));
                     //设置鼠标位置方便后面调用（如果后面调用删了这里就改掉）
+                    //Set the mouse location
                     Constant.setMouse_X(e.getX());
                     Constant.setMouse_Y(e.getY());
                     //离开游戏返回主菜单
+                    //Exit the game and back to login frame
                     if(e.getX()>1400&e.getY()<50){
                         Constant.setByx(0);
                         ((JFrame) e.getSource()).dispose();
                     }
                     //切换player的按键
+                    //Switching the player by clicking twice
                     if(e.getX()>1350&e.getY()>700){
                         if(!map.swicth){
                             map.swicth = true;
@@ -46,7 +51,9 @@ public class MapListener {
                         else {
                             //player1结束换player2，player2结束换player1
                             //重置玩家的可移动次数
+                            //Reset the move of player
                             //重置军队的可移动次数
+                            //Reset the move of army
                             if(Constant.getPnum()==1){
                                 Constant.setPnum(2);
                                 Constant.getPlayer2().setMove(2);
@@ -63,6 +70,7 @@ public class MapListener {
                                     Constant.getPlayer2().getArm(i).setMovement(Constant.getPlayer2().getArm(i).getMovementTotal());
                                 }
                                 //改天气(最好不要全改？）
+                                //Change the weather
                                 for (int i = 0; i < Constant.cellnum; i++) {
                                     Constant.getCell(i).setWeather(Constant.getWeatherList()[random.nextInt(2)]);
                                 }
@@ -74,18 +82,22 @@ public class MapListener {
                         map.swicth=false;
                     }
                     //判断是否点击了cell所在的位置
+                    //Decide if we click the cell's location
                     for (int i = 0; i < Constant.getPointnum(); i++) {
                         if(Constant.getMouse_X()>=Constant.getCell(i).getLocationx()&
                                 Constant.getMouse_Y()>=Constant.getCell(i).getLocationy()&
                                 Constant.getMouse_X()<=Constant.getCell(i).getLocationx()+30&
                                 Constant.getMouse_Y()<=Constant.getCell(i).getLocationy()+30){
                             //点击的cell存在自己的arm（还没分敌友）
+                            //Store the chosen cell to arm
                             if(map.isempty == 1){
                                 //不能选择自己（这里要改一下点自己的反馈)
+                                //Cannot attack the chosen cell
                                 if(map.icell==i){
                                     JOptionPane.showMessageDialog(null,"Choose other cell");
                                 }
                                 //判断是否不是附近的（不是距离为1的点）（这里要改一下点其他cell的反馈）
+                                //Cannot attack the cell that are too far
                                 else if((Math.abs(Constant.getCell(map.icell).getLocationx()
                                         -Constant.getCell(i).getLocationx())+
                                         Math.abs(Constant.getCell(map.icell).getLocationy()
@@ -93,6 +105,8 @@ public class MapListener {
                                     JOptionPane.showMessageDialog(null,"Choose other cell");
                                 }
                                 //这里要判断是否为友军，然后进攻
+                                //Cannot attack own cells, and we can finally attack if we meet these
+                                //Requirments above
                                 else if(Constant.getCell(i).getArm()!=null){
                                     boolean isEnermy=true;
                                     if(Constant.getPnum()==1){
@@ -106,17 +120,21 @@ public class MapListener {
                                         }
                                     }
                                     //是友军不能进攻
+                                    //Show the dialog on the UI
                                     if (!isEnermy){
                                         JOptionPane.showMessageDialog(null,"You cannot hit arms on your side");
                                     }
                                     //不是直接进攻（这里最好要有一个展示进攻的过程，死亡暂时还没做完）(这里还差挺多的）
+                                    //attack after meeting requirments
                                     else {
                                         map.isempty = 0;
                                         if(Constant.getAllplayers()[Constant.getPnum()-1].getMove()>0&
                                                 Constant.getCell(map.icell).getArm().getMovement()>0){
                                             //当前玩家move-1
+                                            //Current player's move -1
                                             Constant.getAllplayers()[Constant.getPnum()-1].changeMove(1);
                                             //当前军队move-1
+                                            //Current army's move -1
                                             Constant.getCell(map.icell).getArm().changeMovement(1);
                                             JOptionPane.showMessageDialog(null,"attack");
                                             new fight(Constant.getCell(i).getArm(),Constant.getCell(map.icell).getArm());
@@ -131,13 +149,16 @@ public class MapListener {
                                     }
                                 }
                                 //如果满足所有移动条件那么移动arm到下一个cell（移动条件还不全）
+                                //If meet all requirments, move the arm to the next cell
                                 else {
                                     map.isempty=0;
                                     if(Constant.getAllplayers()[Constant.getPnum()-1].getMove()>0&
                                             Constant.getCell(map.icell).getArm().getMovement()>0){
                                         //当前玩家move-1
+                                        //Current player's move -1
                                         Constant.getAllplayers()[Constant.getPnum()-1].changeMove(1);
                                         //当前军队move-1
+                                        //Current army's move -1
                                         Constant.getCell(map.icell).getArm().changeMovement(1);
                                         Constant.getCell(i).setArm(Constant.getCell(map.icell).getArm());
                                         Constant.getCell(i).getArm().setX(Constant.getCell(i).getLocationx());
@@ -154,6 +175,7 @@ public class MapListener {
                                 }
                             }
                             //点击自己的arm，保存此次的点的位置，后面发起进攻时要用
+                            //Click own arm to save the current cell location
                             else if(Constant.getCell(i).getArm()!=null){
                                 if(Constant.getCell(i).getArm().getBelongPlayer()==Constant.getPnum()){
                                     map.isempty=1;
@@ -167,6 +189,7 @@ public class MapListener {
 
                                 if(Constant.getCell(i).isP1CanProduce()&Constant.getPnum()==1){
                                     //每个国家的选框还没做好统一用这4个
+                                    //Frame for selecting countries
                                     Object[] arm ={ "Infantry", "Armored Vechicle", "Tank","Tiger Tank"};
                                     s = (String) JOptionPane.showInputDialog(null,"choose arm:\n",
                                             "produce", JOptionPane.PLAIN_MESSAGE, new ImageIcon(""), arm, 4);
@@ -181,6 +204,7 @@ public class MapListener {
                                     JOptionPane.showMessageDialog(null,"Here is empty");
                                 }
                                 //双方对应生成选中的兵种
+                                //Create the selected army
                                 Armnew a = null;
                                 if(Constant.getPnum()==1){
                                     if(Objects.equals(s, "Infantry")){
@@ -200,6 +224,7 @@ public class MapListener {
                                                 Constant.getCell(i).getLocationy());
                                     }
                                     //成功加入兵种后扣cost，把该兵种加入对应的player和cell中
+                                    //Use the cost if we add arm, and add the arm to corresponding player and cell
                                     if(a!=null){
                                         if(Constant.getPlayer1().getCost()-a.getCost()>=0){
                                             Constant.getPlayer1().changeCost(-a.getCost());
@@ -208,12 +233,14 @@ public class MapListener {
                                             s = null;
                                         }
                                         //没钱不能买兵（这里要加个什么效果来展示）
+                                        //Cannot add arm if there's no enough cost
                                         else {
                                             JOptionPane.showMessageDialog(null,"Need more money");
                                         }
                                     }
                                 }
                                 //下面是player2的同player1
+                                //Same codes for player2 as player1
                                 else if (Constant.getPnum()==2) {
                                     if(Objects.equals(s, "Infantry")){
                                         a = new Infantry4p2(Constant.getMap(),Constant.getCell(i).getLocationx(),
@@ -248,6 +275,7 @@ public class MapListener {
                     }
                 }
                 //右键查看该点的详细信息(在celldetail中）
+                //Right-click to check detail
                 if(e.getButton()==3){
                     Constant.setMouse_X(e.getX());
                     Constant.setMouse_Y(e.getY());
