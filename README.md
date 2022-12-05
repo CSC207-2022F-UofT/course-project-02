@@ -37,3 +37,22 @@ Moving forward, we expect you to maintain this project structure. You *should* u
 ![image](https://user-images.githubusercontent.com/5333020/196066655-d3c97bf4-fdbd-46b0-b6ae-aeb8dbcf351d.png)
 
 You can create another simple class and try generating a test for this class.
+
+## Program Instruction
+
+Our game is basically a chess game involves two players and their army to fight with each other. 
+The name of the game is "NO MAN'S LAND", and we will provide some instructions to run this program.
+First, we should find the "Login" class, which is the presenter page of our program. By running this file,
+we can access our UI page and enter the game. 
+Once you see the login frame, you should enter both the password and username "admin".
+Since our game only allow two players to join the game on the same computer, players only need to login once.
+Then, players are going to choose their countries on the UI by clicking the related images.
+Next, players can choose to buy army on empty cells and start to fight.
+To end and switch the turn to the next player, you should click the little square which labed "END TURN",
+and confirm by clicking the label "YES" on the right side of the screen.
+
+## Design Pattern 
+
+Our 
+
+## About tests

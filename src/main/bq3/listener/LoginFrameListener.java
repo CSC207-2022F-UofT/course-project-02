@@ -40,6 +40,7 @@ public class LoginFrameListener {
                     mistakeCase.setVisible(true);
                     mistakeCase.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
                     // 添加 dialog 关闭事件
+                    // Add the dialog closing event
                     mistakeCase.addWindowListener(new WindowAdapter() {
                         @Override
                         public void windowClosing(WindowEvent e) {
@@ -56,6 +57,7 @@ public class LoginFrameListener {
                     });
                     t1.start();
                     // 启动第二个线程 第二个玩家进行等待
+                    // Open the second thread, at the meantime, the second player is waiting
                     Thread t2 = new Thread(() -> {
                         synchronized (LoginFrame.lock1) {
                             try {
@@ -68,6 +70,7 @@ public class LoginFrameListener {
                     });
                     t2.start();
                     // 玩家选择国家后继续
+                    // After choosing the country, we enter the map frame
                     Thread t3 = new Thread(() -> {
                         synchronized (LoginFrame.lock2) {
                             /*while(true) {
@@ -91,7 +94,7 @@ public class LoginFrameListener {
     }
 
     /**
-     * 判断是否登录
+     * 判断是否登录 decide whether we should login
      * @param account 用户名
      * @param password 密码
      * @return true/false

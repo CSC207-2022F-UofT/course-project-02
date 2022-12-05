@@ -20,27 +20,36 @@ public class Constant {
     static int height=820;
     static int width=1500;
     //距左边的距离
+    //Distance to the left bound
     static int map_1=50;
     //距上边的距离
+    //Distance to the upper bound
     static int map_2=70;
     //距右边的距离
+    //Distance to the right bound
     static int map_3 = (int)widths-50;
     //距下边的距离
+    //Distance to the lower bound
     static int map_4 = (int)heights-50;
     //字体
+    //Font
     static String title="Times";
     //鼠标坐标
+    //Mouse Location
     static int Mouse_X;
     static int Mouse_Y;
 
     static boolean Left_click=false;
     static boolean Right_click=false;
     //允许打开窗口yxz
+    //Allow opening the yxz window
     static boolean multyxz;
     static int byx=0;
     //是否画兵
+    //Decide whether we are going to paint the army
     static int paint;
     //谁的回合
+    //Decide which player's turn
     static int state=0;
 
     static int i;

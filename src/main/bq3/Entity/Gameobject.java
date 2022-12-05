@@ -8,15 +8,20 @@ public abstract class Gameobject {
 
     Image img;
     //游戏元素的横坐标
+    //The x-coordinate of gameobject
     int x;
     //游戏元素的纵坐标
+    //The y-coordinate of gameobject
     int y;
     //游戏元素的宽
+    //The width of the gameobject
     int width;
     //游戏元素的高
+    //The height of the gameobject
     int height;
 
     //引入主界面
+    //Create the map
     Map map;
 
     public Gameobject(Map map){
@@ -95,8 +100,10 @@ public abstract class Gameobject {
         this.map = frame;
     }
     //继承元素绘制自己的方法
+    //Let gameobject to paintself
     public abstract void paintSelf(Graphics g);
 
     //获取当前游戏元素的矩形,是为碰撞检测而写
+    //Get rectangle of the gameobect for testing
     public abstract Rectangle getRec();
 }

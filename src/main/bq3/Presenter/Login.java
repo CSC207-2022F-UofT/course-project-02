@@ -12,11 +12,13 @@ import java.util.HashMap;
 public class Login extends JFrame {
 
     //双缓存(保证图片文字不会闪烁）
+    //Ensure not falsh screen
     private Image offscreenimage=null;
     private final BackgroundEntry bg = new BackgroundEntry();
 
     /**
      * 用来存储玩家选择的国家
+     * To store the chosen country
      */
     public static HashMap<String, String> PLAY_COUNTRY_MAP = new HashMap<String, String>();
 
