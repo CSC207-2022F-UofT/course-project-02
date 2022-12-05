@@ -49,8 +49,10 @@ Since our game only allow two players to join the game on the same computer, pla
 Then, players are going to choose their countries on the UI by clicking the related images.
 Next, players can choose to buy army on empty cells and start to fight.
 To end and switch the turn to the next player, you should click the little square which labed "END TURN",
-and comfirm by clicking the label "YES" on the right side of the screen.
+and confirm by clicking the label "YES" on the right side of the screen.
 
 ## Design Pattern 
+
+Our 
 
 ## About tests
