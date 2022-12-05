@@ -88,7 +88,7 @@ public class LoginFrame {
         frame.add(loginButton);
 
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+//        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 //        frame.getContentPane().add(new SelectCountryFrame());
     }
 
