@@ -1,7 +1,6 @@
 package bq3.Test;
 
-import bq3.Entity.Arm.Tank;
-import bq3.Entity.Arm.Tank4p1;
+import bq3.Entity.Arm.*;
 import bq3.Entity.Armnew;
 
 import bq3.Usecase.Dead;
@@ -19,49 +18,21 @@ public class TesterForFight {
     @Test
     public void testfight1() {
         Map map = new Map();
-        Armnew arm1 = new Tank4p1(map, 0, 0);
-        Armnew arm2 = new Tank4p1(map, 0, 0);
-        for (int i = 0; i < 10; i++) {
+        Armnew arm1 = new Tank4p1(map, 0, 0); // test for 2 tanks fight
+        Armnew arm2 = new Tank4p2(map, 0, 0);
+        for (int i = 0; i < 5; i++) {
             fight sample = new fight(arm1, arm2);
-            switch(i) {
-                case 1:
-                    assertEquals(80, arm2.getHp());
-                    assertEquals(80, arm1.getHp());
-                    break;
-                case 2:
-                    assertEquals(70, arm2.getHp());
-                    assertEquals(70, arm1.getHp());
-                    break;
-                case 3:
-                    assertEquals(60, arm2.getHp());
-                    assertEquals(60, arm1.getHp());
-                case 4:
-                    assertEquals(50, arm2.getHp());
-                    assertEquals(50, arm1.getHp());
-                    break;
-                case 5:
-                    assertEquals(40, arm2.getHp());
-                    assertEquals(40, arm1.getHp());
-                    break;
-                case 6:
-                    assertEquals(30, arm2.getHp());
-                    assertEquals(30, arm1.getHp());
-                    break;
-                case 7:
-                    assertEquals(20, arm2.getHp());
-                    assertEquals(20, arm1.getHp());
-                    break;
-                case 8:
-                    assertEquals(10, arm2.getHp());
-                    assertEquals(10, arm1.getHp());
-                    break;
-                case 9:
-                    assertEquals(5, arm2.getHp());
-                    assertEquals(5, arm1.getHp());
-                    break;
-                default:
-                    // code block
-            }
+            assertEquals(80-20*i, arm1.getHp());
+            assertEquals(80-20*i, arm2.getHp());
         }
+        Armnew arm3 = new Infantry4p1(map, 0, 0); //test for infantry fight with armored_vehicle
+        Armnew arm4 = new ArmoredVechicle4p2(map, 0, 0);
+        fight sample2 = new fight(arm3, arm4);
+        assertEquals(10, arm3.getHp());
+        assertEquals(60, arm4.getHp());
+        fight sample3 = new fight(arm3, arm4);
+        assertEquals(0, arm3.getHp());
+        assertEquals(50, arm4.getHp());
+
     }
 }
