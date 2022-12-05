@@ -17,5 +17,11 @@ public class TestEndTerm {
         endTerm = new EndTerm(2);
         assertEquals(1, Constant.getPnum());
         assertEquals(2, Constant.getPlayer2().getMove());
+        endTerm = new EndTerm(1);
+        assertEquals(2, Constant.getPnum());
+        assertEquals(2, Constant.getPlayer2().getMove());
+        endTerm = new EndTerm(2);
+        assertEquals(1, Constant.getPnum());
+        assertEquals(2, Constant.getPlayer2().getMove());
     }
 }
