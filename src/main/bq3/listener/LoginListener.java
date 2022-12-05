@@ -16,6 +16,7 @@ public class LoginListener {
             @Override
             public void mouseClicked(MouseEvent e) {
                 //点击开始游戏
+                //Click to open the game
                 //打开上次游戏（还没做，等全做好了再加）
                 if(e.getButton()==1&
                         e.getX()<=200&
@@ -42,6 +43,7 @@ public class LoginListener {
                     }
                 }
                 //退出游戏
+                //Exit the game
                 if (e.getX()<=100&
                         e.getY()>=450&
                         e.getY()<=520&
