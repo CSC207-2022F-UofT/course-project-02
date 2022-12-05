@@ -68,7 +68,7 @@ public class LoginFrame {
     }
 
     public void setFrame() {
-        frame = new JFrame("兵棋");
+        frame = new JFrame("NO MAN'S LAND");
         frame.setBounds(460, 300, 400, 160);
         frame.setLayout(new FlowLayout(FlowLayout.CENTER));
         frame.setLocationRelativeTo(null);
@@ -94,6 +94,7 @@ public class LoginFrame {
 
     /**
      * 监听点击按钮
+     * Action listener
      */
     public void listen() {
         new LoginFrameListener().listen(loginButton, textField, passwordField, frame);
