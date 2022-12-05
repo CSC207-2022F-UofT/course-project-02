@@ -53,6 +53,14 @@ and confirm by clicking the label "YES" on the right side of the screen.
 
 ## Design Pattern 
 
-Our 
+Our design pattern is Observer design pattern. Because when the players play the game, our program will create a list
+of units, like infantries, tanks, etc. These units are observers. When the game start, these units will call methods to fight or determine what 
+the attack or defend or other attributes without our commands. These units will also call method that calculate the change in HP and remaining
+HP, which means that these units (observers) are automatically adjusting their status. Noticeably, our entities, like 
+arms and types of constructions follow this design pattern. And our program is developed based on this pattern for each
+round of game.
 
 ## About tests
+Since we include four use cases in our program, which are "Dead", "EndTerm", "fight" and "GetLocation".
+Therefore, we generate four related tests for these four use cases under the file of "Test" to ensure we
+follow the clean architecture rule. Also, our code coverage report is include below.
