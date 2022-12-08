@@ -38,12 +38,19 @@ Moving forward, we expect you to maintain this project structure. You *should* u
 
 You can create another simple class and try generating a test for this class.
 
-## Program Instruction
+## Program Specification
 
-Our game is basically a chess game involves two players and their army to fight with each other. 
+Our game is basically a chess game involves two players and their army to fight with each other.
+The entire game is based on the UI pages, and the "Login" class is the presenter page of our program. 
+By running this file, we can access our UI page and enter the game.
+We introduce lots of mouselisteners in our UI pages.
+In this case, our program will react when players click on the UI pages depending on what decisions players are making.
+
+
+## Program Instruction
+ 
 The name of the game is "NO MAN'S LAND", and we will provide some instructions to run this program.
-First, we should find the "Login" class, which is the presenter page of our program. By running this file,
-we can access our UI page and enter the game. 
+First, we should find the "Login" class to enter the game. 
 Once you see the login frame, you should enter both the password and username "admin".
 Since our game only allow two players to join the game on the same computer, players only need to login once.
 Then, players are going to choose their countries on the UI by clicking the related images.
@@ -61,6 +68,10 @@ arms and types of constructions follow this design pattern. And our program is d
 round of game.
 
 ## About tests
+
+Since we include four use cases in our program, which are "Dead", "EndTerm", "fight" and "GetLocation".
+Therefore, we generate four related tests for these four use cases under the file of "Test" to ensure we 
+follow the clean architecture rule. Also, our code coverage report is include below. 
 Since we include four use cases in our program, which are "Dead", "EndTerm", "fight" and "GetLocation".
 Therefore, we generate four related tests for these four use cases under the file of "Test" to ensure we
 follow the clean architecture rule. Also, our code coverage report is include below.
